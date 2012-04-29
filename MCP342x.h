@@ -29,6 +29,8 @@ public:
     gain8 = 0x03,
   };
 
+  static const uint8_t notReadyMask = 0x80;
+  
   enum error_t {
     errorNone = 0,
     errorConvertFailed = 1,
