@@ -57,8 +57,8 @@ public:
 
 
   /** Instruct the MCP342x device to begin a conversion.
-   * @param channel The ADC channel, one of chnnael0, channel1,
-   * channel2 or * channel3. Not all supported devices have 4
+   * @param channel The ADC channel, one of channel0, channel1,
+   * channel2 or channel3. Not all supported devices have 4
    * channels.
    * @param mode The conversion mode, oneShotMode or continousMode.
    * @param resolution Number of bits in the result, one of res12,
@@ -70,11 +70,28 @@ public:
   error_t convert(channel_t channel, mode_t mode, resolution_t resolution, gain_t gain);
 
   /** Read the sample value from the MCP342x device.
-   * @param result The signed result. Valid
+   * @param result The signed result.
    * @param config The contents of the configuration register.
    * @return Value indicating error (if any).
    */
   error_t read(long &result, uint8_t& config) const;
+
+  /** Instruct the MCP342x device to begin a conversion and block
+   * until read completes or timed out.
+   * @param channel The ADC channel, one of channel0, channel1,
+   * channel2 or channel3. Not all supported devices have 4
+   * channels.
+   * @param mode The conversion mode, oneShotMode or continousMode.
+   * @param resolution Number of bits in the result, one of res12,
+   * res14, res16 or res18. Not all devices support 18-bit resolution.
+   * @param gain The gain setting of the programmable gain amplifier,
+   * one of gain1, gain2, gain4 or gain8.
+   * @param timeout The time out value in microseconds. 
+   * @param result The signed result.
+   * @param config The contents of the configuration register.
+   * @return Value indicating error (if any).
+   */
+  error_t convertAndRead(channel_t channel, mode_t mode, resolution_t resolution, gain_t gain, unsigned long timeout, long &result, uint8_t& config);
 
   
 private:
