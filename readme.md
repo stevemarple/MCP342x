@@ -2,7 +2,7 @@
 
 Arduino library to support Microchip ADC342x analogue to digital
 converters. The devices utilise the I2C bus. For the low level I2C
-protocol this library depend on the Arduino Wire library.
+protocol this library depends on the Arduino Wire library.
 
 ## Supported devices
 
@@ -16,13 +16,28 @@ protocol this library depend on the Arduino Wire library.
 The MCP3422 and MCP3426 use I2C address 0x68, all other devices can be
 configured to use any address in the range 0x68 - 0x6F (inclusive).
 
+## License
+Released under the GNU Lesser General Public License, version 2.1. See
+license.txt for details.
+
 ## Examples
 
 ### ListDevices 
-List all devices which responds to a request for one byte. Useful to
+List all devices which respond to a request for one byte. Useful to
 debug the I2C bus.
 
 ### ConvertAndRead
-Demonstrate the use of the `convert()` and `read()` functions.
+Demonstrate the use of the `convertAndRead()` function.
+
+### ConvertAndReadNoDelay
+Demonstrate the use of the `convert()` and `read()` functions to
+implement non-blocking analogue to digital conversion. Example makes
+us of the built-in LED to demonstrate how a slow 18-bit conversion
+need not interfere with other actions.
+
+### GeneralCallConversion 
+Demonstrate the general call conversion command which can be used to
+instruct several analogue to digital converters to begin conversion
+simultanteously.
 
 
