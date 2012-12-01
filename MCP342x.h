@@ -46,6 +46,9 @@ public:
   static uint8_t generalCallLatch(void);
   static uint8_t generalCallConversion(void);
 
+  // Adjust result to account for gain and resolution settings
+  static void normalise(long &result, Config config);
+
   MCP342x(void);
   MCP342x(uint8_t address);
 
@@ -101,7 +104,7 @@ public:
    * @return Value indicating error (if any).
    */
   error_t convertAndRead(Channel channel, Mode mode, Resolution resolution, Gain gain, unsigned long timeout, long &result, Config &status);
-    
+
 private:
   uint8_t address;
   // For easy readout need to know whether 18 bit mode was selected

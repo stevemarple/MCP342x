@@ -45,6 +45,23 @@ uint8_t MCP342x::generalCallConversion(void)
   return Wire.endTransmission();
 }
 
+void MCP342x::normalise(long &result, Config config)
+{
+  /* Resolution is 12, 14, 16,or 18; gain is 1, 2, 4, or 8. Shift
+   * least places necessary such that all possibilities can be
+   * accounted for:
+   *
+   * 18 - resolution + 3 - log2(gain)
+   *
+   * Largest shift is for resolution==12 and gain==1 (9 places)
+   * Smallest is for resolution==18 and gain==8 (0 places) This means
+   * that the lowest 21 bits of the long result are used and that up
+   * to 1024 results can be safely accumulated without
+   * underflow/overflow.
+   */ 
+  result <<= (21 - int(config.getResolution()) - config.getGain().log2());
+}
+
 
 MCP342x::MCP342x(void) : address(0x68)
 {
