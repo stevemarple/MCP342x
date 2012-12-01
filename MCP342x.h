@@ -188,7 +188,7 @@ public:
   };
   
   inline Config(uint8_t c, bool continuous, uint8_t r, uint8_t g) :
-    val(((c-1) << 5) | (uint8_t)(continuous ? 0x10 : 0) | ((r-12) << 1)) {
+    val((((c-1) & 3) << 5) | (uint8_t)(continuous ? 0x10 : 0) | ((r-12) << 1)) {
     switch(g) {
     case 2:
       val |= 0x01;
