@@ -31,6 +31,8 @@ public:
   static const uint8_t notReadyMask = 0x80;
   static const uint8_t newConversionMask = 0x80;
   static const uint8_t numChannels = 4;
+  static const uint8_t maxResolution = 18;
+  static const uint8_t maxGain = 8;
   static const int writeTimeout_us = 250;
 
   enum error_t {
@@ -191,7 +193,9 @@ public:
   };
   
   inline Config(uint8_t c, bool continuous, uint8_t r, uint8_t g) :
-    val((((c-1) & 3) << 5) | (uint8_t)(continuous ? 0x10 : 0) | ((r-12) << 1)) {
+    val((((c-1) & 3) << 5)
+	| (uint8_t)(continuous ? 0x10 : 0)
+	| ((((r-12) & 0x1e) << 1) & 0xc)) {
     switch(g) {
     case 2:
       val |= 0x01;
