@@ -1,0 +1,53 @@
+#######################################
+# Syntax Coloring Map For MCP342x
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+MCP342x		KEYWORD1
+Config		KEYWORD1
+Channel		KEYWORD1
+Mode		KEYWORD1
+Resolution	KEYWORD1
+Gain		KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+generalCallReset	KEYWORD2
+generalCallLatch		KEYWORD2
+generalCallConversion		KEYWORD2
+normalise		KEYWORD2
+autoprobe	KEYWORD2
+getAddress	KEYWORD2
+configure	KEYWORD2
+convert		KEYWORD2
+read		KEYWORD2
+convertAndRead	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+channel1		LITERAL1
+channel2		LITERAL1
+channel3		LITERAL1
+channel4		LITERAL1
+oneShot			LITERAL1
+continous		LITERAL1
+resolution12		LITERAL1
+resolution14		LITERAL1
+resolution16		LITERAL1
+resolution18		LITERAL1
+gain1			LITERAL1
+gain2			LITERAL1
+gain4			LITERAL1
+gain8			LITERAL1
+notReadyMask		LITERAL1
+newConversionMask	LITERAL1
+numChannels		LITERAL1
+maxResolution		LITERAL1
+maxGain			LITERAL1
+writeTimeout_us		LITERAL1
