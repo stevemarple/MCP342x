@@ -1,6 +1,6 @@
 # MCP342x ADC library
 
-Arduino library to support Microchip ADC342x analogue to digital
+Arduino library to support Microchip MCP342x analogue to digital
 converters. The devices utilise the I2C bus. For the low level I2C
 protocol this library depends on the Arduino Wire library.
 
