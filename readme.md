@@ -32,7 +32,7 @@ Demonstrate the use of the `convertAndRead()` function.
 ### ConvertAndReadNoDelay
 Demonstrate the use of the `convert()` and `read()` functions to
 implement non-blocking analogue to digital conversion. Example makes
-us of the built-in LED to demonstrate how a slow 18-bit conversion
+use of the built-in LED to demonstrate how a slow 18-bit conversion
 need not interfere with other actions.
 
 ### GeneralCallConversion 
