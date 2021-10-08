@@ -196,7 +196,7 @@ MCP342x::error_t MCP342x::convertAndRead(Channel channel, Mode mode, Resolution 
     if (!err && status.isReady())
       return err;
     
-  } while (long(micros() - t) >= 0);
+  } while (micros() < t);
   return errorReadTimeout;
 }
 
