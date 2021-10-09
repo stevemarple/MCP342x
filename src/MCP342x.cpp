@@ -1,7 +1,6 @@
 #include "Wire.h"
-#include "MCP342x.h"
-
 #include "Arduino.h"
+#include "MCP342x.h"
 
 // Assuming a 100kHz clock the address and config byte take 18 clock
 // cycles, or 180 microseconds. Use a timeout of 250us to be safe.
@@ -195,8 +194,7 @@ MCP342x::error_t MCP342x::convertAndRead(Channel channel, Mode mode, Resolution 
     err = read(result, status);
     if (!err && status.isReady())
       return err;
-    
-  } while (micros() < t);
+  } while (long(micros() - t) < 0);
   return errorReadTimeout;
 }
 
