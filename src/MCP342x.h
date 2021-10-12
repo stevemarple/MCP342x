@@ -1,7 +1,7 @@
 #ifndef MCP342X_h
 #define MCP342X_h
 
-#define MCP342X_VERSION "1.0.2"
+#define MCP342X_VERSION "1.0.3"
 
 class MCP342x {
 public:
