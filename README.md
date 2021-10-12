@@ -22,7 +22,7 @@ license.txt for details.
 
 ## Examples
 
-### ListDevices 
+### ListDevices
 List all devices which respond to a request for one byte. Useful to
 debug the I2C bus.
 
@@ -35,9 +35,13 @@ implement non-blocking analogue to digital conversion. Example makes
 use of the built-in LED to demonstrate how a slow 18-bit conversion
 need not interfere with other actions.
 
-### GeneralCallConversion 
+### GeneralCallConversion
 Demonstrate the general call conversion command which can be used to
 instruct several analogue to digital converters to begin conversion
 simultanteously.
 
+## Contributors
+* [Steve Marple](https://github.com/stevemarple)
+* [per1234](https://github.com/per1234)
+* [kyberias](https://github.com/kyberias)
 
