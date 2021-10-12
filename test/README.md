@@ -2,18 +2,11 @@
 
 ## Install gtest
 
-    sudo apt-get install libgtest-dev
+Install the required libraries. For Debian 10 Linux:
 
-    sudo apt-get install cmake # install cmake
-    cd /usr/src/gtest
-    sudo cmake CMakeLists.txt
-    sudo make
- 
-    # copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
-    sudo cp *.a /usr/lib
+	sudo apt-get install libgtest-dev
 
+## Compile and run tests
 
-## Compile tests
-
-    g++ ../src/MCP342x.cpp MCP342x.test.cpp -I . -I ../src -l gtest -l pthread -std=c++11
+	make test
 
