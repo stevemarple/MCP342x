@@ -11,7 +11,9 @@ const MCP342x::Channel MCP342x::channel3 = Channel(0x40);
 const MCP342x::Channel MCP342x::channel4 = Channel(0x60);
 
 const MCP342x::Mode MCP342x::oneShot = Mode(0x00);
-const MCP342x::Mode MCP342x::continous = Mode(0x10);
+const MCP342x::Mode MCP342x::continuous = Mode(0x10);
+const MCP342x::Mode& MCP342x::continous(continuous); // deprecated
+
 
 const MCP342x::Resolution MCP342x::resolution12 = Resolution(0x00);
 const MCP342x::Resolution MCP342x::resolution14 = Resolution(0x04);

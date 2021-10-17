@@ -17,7 +17,10 @@ public:
   static const Channel channel4;
 
   static const Mode oneShot;
-  static const Mode continous;
+  static const Mode continuous;
+
+  /// @deprecated Use continuous
+  static const Mode& continous;
   
   static const Resolution resolution12;
   static const Resolution resolution14;
@@ -72,7 +75,7 @@ public:
    * @param channel The ADC channel, one of channel0, channel1,
    * channel2 or channel3. Not all supported devices have 4
    * channels.
-   * @param mode The conversion mode, oneShot or continous.
+   * @param mode The conversion mode, oneShot or continuous.
    * @param resolution Number of bits in the result, one of res12,
    * res14, res16 or res18. Not all devices support 18-bit resolution.
    * @param gain The gain setting of the programmable gain amplifier,
@@ -96,7 +99,7 @@ public:
    * @param channel The ADC channel, one of channel0, channel1,
    * channel2 or channel3. Not all supported devices have 4
    * channels.
-   * @param mode The conversion mode, oneShotMode or continousMode.
+   * @param mode The conversion mode, oneShot mode or continuous mode.
    * @param resolution Number of bits in the result, one of res12,
    * res14, res16 or res18. Not all devices support 18-bit resolution.
    * @param gain The gain setting of the programmable gain amplifier,
