@@ -1,6 +1,9 @@
 #ifndef MCP342X_h
 #define MCP342X_h
 
+#include "Wire.h"
+typedef TwoWire* WireType;
+
 #define MCP342X_VERSION "1.0.4"
 
 class MCP342x {
@@ -48,15 +51,14 @@ public:
     errorConfigureFailed,
   };
 
-  static uint8_t generalCallReset(void);
-  static uint8_t generalCallLatch(void);
-  static uint8_t generalCallConversion(void);
+  uint8_t generalCallReset(void);
+  uint8_t generalCallLatch(void);
+  uint8_t generalCallConversion(void);
 
   // Adjust result to account for gain and resolution settings
   static void normalise(long &result, Config config);
 
-  MCP342x(void);
-  MCP342x(uint8_t address);
+  MCP342x(uint8_t address = 0x68, WireType wireImpl = &Wire);
 
   bool autoprobe(const uint8_t *addressList, uint8_t len);
   
@@ -113,6 +115,7 @@ public:
 
 private:
   uint8_t address;
+  WireType wire;
   // For easy readout need to know whether 18 bit mode was selected
   // uint8_t config;
 };

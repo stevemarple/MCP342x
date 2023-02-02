@@ -1,4 +1,3 @@
-#include "Wire.h"
 #include "Arduino.h"
 #include "MCP342x.h"
 
@@ -27,23 +26,23 @@ const MCP342x::Gain MCP342x::gain8 = Gain(0x03);
 
 uint8_t MCP342x::generalCallReset(void)
 {
-  Wire.beginTransmission(0x00);
-  Wire.write(0x06);
-  return Wire.endTransmission();
+  wire->beginTransmission(0x00);
+  wire->write(0x06);
+  return wire->endTransmission();
 }
 
 uint8_t MCP342x::generalCallLatch(void)
 {
-  Wire.beginTransmission(0x00);
-  Wire.write(0x04);
-  return Wire.endTransmission();
+  wire->beginTransmission(0x00);
+  wire->write(0x04);
+  return wire->endTransmission();
 }
 
 uint8_t MCP342x::generalCallConversion(void)
 {
-  Wire.beginTransmission(0x00);
-  Wire.write(0x08);
-  return Wire.endTransmission();
+  wire->beginTransmission(0x00);
+  wire->write(0x08);
+  return wire->endTransmission();
 }
 
 void MCP342x::normalise(long &result, Config config)
@@ -62,14 +61,8 @@ void MCP342x::normalise(long &result, Config config)
    */ 
   result <<= (21 - int(config.getResolution()) - config.getGain().log2());
 }
-
-
-MCP342x::MCP342x(void) : address(0x68)
-{
-  ;
-}
-				
-MCP342x::MCP342x(uint8_t add) : address(add)
+		
+MCP342x::MCP342x(uint8_t address, WireType wireImpl) : address(address), wire(wireImpl)
 {
   ;
 }
@@ -77,8 +70,8 @@ MCP342x::MCP342x(uint8_t add) : address(add)
 bool MCP342x::autoprobe(const uint8_t *addressList, uint8_t len)
 {
   for (uint8_t i = 0; i < len; ++i) {
-    Wire.requestFrom(addressList[i], (uint8_t)1);
-    if (Wire.available()) {
+    wire->requestFrom(addressList[i], (uint8_t)1);
+    if (wire->available()) {
       address = addressList[i];
       return true;
     }
@@ -96,9 +89,9 @@ MCP342x::error_t MCP342x::convert(Channel channel, Mode mode, Resolution resolut
 
 MCP342x::error_t MCP342x::configure(const Config &config) const
 {
-  Wire.beginTransmission(address);
-  Wire.write(config.val);
-  if (Wire.endTransmission())
+  wire->beginTransmission(address);
+  wire->write(config.val);
+  if (wire->endTransmission())
     return errorConfigureFailed;
   else
     return errorNone;
@@ -106,9 +99,9 @@ MCP342x::error_t MCP342x::configure(const Config &config) const
 
 MCP342x::error_t MCP342x::convert(const Config &config) const
 {
-  Wire.beginTransmission(address);
-  Wire.write(config.val | newConversionMask);
-  if (Wire.endTransmission())
+  wire->beginTransmission(address);
+  wire->write(config.val | newConversionMask);
+  if (wire->endTransmission())
     return errorConvertFailed;
   else
     return errorNone;
@@ -121,12 +114,12 @@ MCP342x::error_t MCP342x::read(long &result, Config& status) const
   // most appropriate configuration value (ready may have changed).
   const uint8_t len = 4;
   uint8_t buffer[len] = {};
-  Wire.requestFrom(address, len);
-  if (Wire.available() != len)
+  wire->requestFrom(address, len);
+  if (wire->available() != len)
     return errorReadFailed;
   
   for (uint8_t i = 0; i < len; ++i)
-    buffer[i] = Wire.read();
+    buffer[i] = wire->read();
 
   uint8_t dataBytes;
   if ((buffer[3] & 0x0c) == 0x0c) {
